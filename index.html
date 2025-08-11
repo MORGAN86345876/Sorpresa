@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>No abrir hasta el 20 de agosto</title>
+  <meta name="description" content="Una sorpresa especial con cuenta regresiva." />
+  <style>
+    :root {
+      --bg1:#111827;
+      --bg2:#1f2937;
+      --accent:#f43f5e; /* rose-500 */
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; background: linear-gradient(120deg, #0ea5e9, #6366f1, #ec4899); background-size: 300% 300%; animation: bg 18s ease-in-out infinite; color:var(--text);}
+    @keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(0,0,0,.25); border-bottom:1px solid var(--border); z-index:10}
+    nav{max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:12px 16px}
+    nav a{color:var(--text); text-decoration:none; margin-left:14px; font-size:14px}
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; background:var(--accent); color:white; text-decoration:none; font-weight:700}
+    .container{max-width:1100px; margin:0 auto; padding:26px 16px;}
+    .hero{text-align:center; padding:80px 16px 40px;}
+    .hero h1{font-size: clamp(28px, 5vw, 56px); margin:0 0 12px; text-shadow:0 6px 22px rgba(0,0,0,.35)}
+    .hero p{color:var(--muted); margin:0 0 20px}
+    .card{background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06)); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    .timer{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:12px}
+    .unit{text-align:center; padding:16px 10px; border-radius:16px; background: var(--card); border:1px solid var(--border)}
+    .value{font-size: clamp(28px, 7vw, 64px); font-weight:900; letter-spacing:1px}
+    .label{margin-top:6px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted)}
+    .underline{width:max(160px,40%); height:4px; margin:10px auto 0; border-radius:999px; background: linear-gradient(90deg, #fff, #ffe1e9, #fff); background-size:200% 100%; animation: under 4s ease-in-out infinite}
+    @keyframes under{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .done{display:none; margin-top:26px; font-weight:900; font-size: clamp(26px, 6vw, 52px); text-align:center; background: linear-gradient(90deg, #fff, #ffe1e9, #fff); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation: under 3s ease-in-out infinite; text-shadow:0 6px 20px rgba(0,0,0,.25)}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px}
+    .col-6{grid-column: span 6}
+    .col-12{grid-column: span 12}
+    @media (max-width:800px){.col-6{grid-column: span 12} .timer{grid-template-columns: repeat(2, 1fr)}}
+    footer{text-align:center; padding:24px; color:var(--muted)}
+    /* Hearts layer */
+    .hearts{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .heart{ position:absolute; bottom:-40px; font-size:18px; opacity:.9; text-shadow:0 4px 12px rgba(0,0,0,.3); animation: floatUp linear forwards }
+    @keyframes floatUp{ 0%{ transform: translateY(0) scale(1); opacity:.95 } 70%{ opacity:.95 } 100%{ transform: translateY(-110vh) scale(1.15); opacity:0 } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div style="font-weight:800">Mi Sorpresa ✨</div>
+      <div>
+        <a href="#contador">Contador</a>
+        <a href="#para-ti">Para ti</a>
+        <a class="btn" href="#contador">Ver cuenta</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Tramposa, tienes que esperar</h1>
+      <div class="underline"></div>
+      <p>Algo muy lindo llega el 20 de agosto de 2025, a las 12:00 pm (hora Colombia).</p>
+    </section>
+
+    <section id="contador" class="card" aria-live="polite" aria-label="Contador">
+      <h2 style="margin:0 0 10px">Cuenta regresiva</h2>
+      <div class="timer">
+        <div class="unit"><div id="d" class="value">00</div><div class="label">Días</div></div>
+        <div class="unit"><div id="h" class="value">00</div><div class="label">Horas</div></div>
+        <div class="unit"><div id="m" class="value">00</div><div class="label">Minutos</div></div>
+        <div class="unit"><div id="s" class="value">00</div><div class="label">Segundos</div></div>
+      </div>
+      <div id="done" class="done">❤️ ¿Quieres ser mi novia? ❤️</div>
+    </section>
+
+    <section id="para-ti" class="grid" style="margin-top:26px">
+      <div class="col-6">
+        <div class="card">
+          <h3 style="margin:0 0 8px">Para ti</h3>
+          <p style="margin:0; color:var(--muted)">Un lugar para poner unas palabras bonitas, fotos o recuerdos. Puedes editar este texto y pegar lo que quieras.</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <h3 style="margin:0 0 8px">Detalles</h3>
+          <ul style="margin:0; padding-left:18px; color:var(--muted)">
+            <li>Fecha: 20/08/2025</li>
+            <li>Hora: 12:00 pm (Colombia)</li>
+            <li>Una sorpresa especial preparada con cariño</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card">
+          <h3 style="margin:0 0 8px">Notas</h3>
+          <p style="margin:0; color:var(--muted)">Si quieres, puedo integrar música, fotos o un formulario para que te responda “Sí”.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Hecho con ❤️</footer>
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    // Cuenta regresiva
+    const targetDate = new Date("2025-08-20T12:00:00-05:00");
+    const $ = (id) => document.getElementById(id);
+    const pad = (n) => String(n).padStart(2, '0');
+    let finished = false;
+    function tick(){
+      const now = new Date();
+      let diff = Math.floor((targetDate.getTime() - now.getTime()) / 1000);
+      if (diff <= 0) { if (!finished) onFinish(); diff = 0; }
+      const days = Math.floor(diff / 86400);
+      const hours = Math.floor((diff % 86400) / 3600);
+      const mins = Math.floor((diff % 3600) / 60);
+      const secs = diff % 60;
+      $('d').textContent = pad(days);
+      $('h').textContent = pad(hours);
+      $('m').textContent = pad(mins);
+      $('s').textContent = pad(secs);
+    }
+    function onFinish(){
+      finished = true;
+      document.querySelector('#contador .timer').style.display = 'none';
+      $('done').style.display = 'block';
+      startHearts(12000);
+    }
+    // Corazones flotando al final
+    function startHearts(durationMs = 10000){
+      const container = document.getElementById('hearts');
+      const start = performance.now();
+      function spawnHeart(){
+        const now = performance.now();
+        if (now - start > durationMs) return;
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = Math.random() < 0.2 ? '💖' : (Math.random() < 0.6 ? '❤️' : '💕');
+        const left = Math.random() * 100;
+        const size = 18 + Math.random() * 22;
+        const drift = (Math.random() * 40) - 20;
+        const duration = 5000 + Math.random() * 3500;
+        const delay = Math.random() * 200;
+        heart.style.left = left + 'vw';
+        heart.style.fontSize = size + 'px';
+        heart.style.animationDuration = duration + 'ms';
+        let y = window.innerHeight + 40;
+        const vx = drift / (duration / 16);
+        let x = (left / 100) * window.innerWidth;
+        const step = () => {
+          y -= window.innerHeight / (duration / 16);
+          x += vx;
+          heart.style.transform = `translate(${x}px, ${y}px)`;
+          if (y < -60) { heart.remove(); return; }
+          requestAnimationFrame(step);
+        };
+        container.appendChild(heart);
+        setTimeout(() => requestAnimationFrame(step), delay);
+        setTimeout(spawnHeart, 120 + Math.random() * 180);
+      }
+      spawnHeart();
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
